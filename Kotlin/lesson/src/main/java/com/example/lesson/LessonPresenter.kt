@@ -21,7 +21,7 @@ class LessonPresenter {
     private val type : Type = object : TypeToken<List<Lesson>>(){}.type
 
     fun fetchData(){
-        HttpClient.INSTANCE.get(LESSON_PATH, type, object : EntityCallback<List<Lesson>>{
+        HttpClient.get(LESSON_PATH, type, object : EntityCallback<List<Lesson>>{
             override fun onSuccess(lessons: List<Lesson>) {
                 this@LessonPresenter.lessons = lessons
                 activity.runOnUiThread { activity.showResult(lessons) }
@@ -35,7 +35,7 @@ class LessonPresenter {
     }
 
     fun showPlayback(){
-        var playbackLessons : MutableList<Lesson> = arrayListOf()
+        val playbackLessons : MutableList<Lesson> = arrayListOf()
         for (lesson in lessons){
             if (lesson.state == Lesson.State.PLAYBACK){
                 playbackLessons.add(lesson)

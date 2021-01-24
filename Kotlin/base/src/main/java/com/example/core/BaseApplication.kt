@@ -11,9 +11,9 @@ class BaseApplication : Application(){
         fun currentApplication(): Context = currentApplication
     }
 
-
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
+    //取代attachBaseContext
+    override fun onCreate() {
+        super.onCreate()
         currentApplication = this
     }
 }

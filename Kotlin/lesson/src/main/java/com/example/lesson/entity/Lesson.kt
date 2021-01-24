@@ -1,6 +1,8 @@
 package com.example.lesson.entity
 
-class Lesson {
+//因為不想讓其他的模組使用到, 將Lesson改成internal
+//相關用到的function 也要改成internal
+internal class Lesson {
 
     lateinit var date: String
     lateinit var content: String
@@ -12,9 +14,23 @@ class Lesson {
         this.state = state
     }
 
-    enum class State(var stateName: String){
-        PLAYBACK("有回放"),
-        LIVE("正在直播"),
-        WAIT("等待中");
+    enum class State{
+        PLAYBACK{
+            override fun stateName(): String {
+                return "有回放"
+            }
+        },
+        LIVE{
+            override fun stateName(): String {
+                return "正在直播"
+            }
+        },
+        WAIT{
+            override fun stateName(): String {
+                return "等待中"
+            }
+        };
+
+        abstract fun stateName(): String
     }
 }

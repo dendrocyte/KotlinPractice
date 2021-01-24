@@ -11,11 +11,12 @@ abstract class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
     private val viewHashMap : MutableMap<Int, View> = mutableMapOf()
 
     @SuppressWarnings("unchecked")
-    protected fun <T> getView(id: Int) :T{
+    //泛型的繼承
+    protected fun <T: View> getView(id: Int) :T{
         var view: View? = viewHashMap[id]
         if (view == null){
             view = itemView.findViewById(id)
-            viewHashMap.put(id, view)
+            viewHashMap[id] = view
         }
         return view as T
     }

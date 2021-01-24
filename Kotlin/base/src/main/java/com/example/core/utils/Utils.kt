@@ -1,3 +1,8 @@
+/**
+ * 讓java可以調用top level
+ * 此處不可以以Utils命名，要是唯一的
+  */
+@file:JvmName("KotlinUtils")
 package com.example.core.utils
 
 import android.content.res.Resources
@@ -6,12 +11,13 @@ import android.util.TypedValue
 import android.widget.Toast
 import com.example.core.BaseApplication
 
-object Utils {
-    private val displayMetrics : DisplayMetrics = Resources.getSystem().displayMetrics
+private val displayMetrics : DisplayMetrics = Resources.getSystem().displayMetrics
+//top level function
+fun dp2px(dp: Float): Float{
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, displayMetrics)
+}
 
-    fun dp2px(dp: Float): Float{
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, displayMetrics)
-    }
+object Utils {
 
     fun toast(string: String) {
         toast(string, Toast.LENGTH_SHORT)

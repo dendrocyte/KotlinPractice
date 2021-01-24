@@ -37,7 +37,7 @@ class LessonActivity : AppCompatActivity(), BaseView<LessonPresenter>, Toolbar.O
         getPresenter().fetchData()
     }
 
-    fun showResult(lessons: List<Lesson>){
+    internal fun showResult(lessons: List<Lesson>){
         lessonAdapter.updateAndNotify(lessons)
         swipe_refresh_layout.isRefreshing = false
     }

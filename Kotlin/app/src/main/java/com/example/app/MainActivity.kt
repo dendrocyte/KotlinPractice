@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.app.entity.User
 import com.example.app.widget.CodeView
@@ -21,6 +20,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
         et_username.setText(CacheUtils.get(usernameKey))
         et_password.setText(CacheUtils.get(passwordKey))

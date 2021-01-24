@@ -12,7 +12,7 @@ class LessonAdapter : RecyclerView.Adapter<LessonAdapter.LessonViewHolder>() {
 
     private var list : List<Lesson> = arrayListOf()
 
-    fun updateAndNotify(list: List<Lesson>){
+    internal fun updateAndNotify(list: List<Lesson>){
         this.list = list
         notifyDataSetChanged()
     }
@@ -22,7 +22,7 @@ class LessonAdapter : RecyclerView.Adapter<LessonAdapter.LessonViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonViewHolder {
-        return LessonViewHolder.Companion.onCreate(parent)
+        return LessonViewHolder.onCreate(parent)
     }
 
     override fun onBindViewHolder(holder: LessonViewHolder, position: Int) {
@@ -33,7 +33,7 @@ class LessonAdapter : RecyclerView.Adapter<LessonAdapter.LessonViewHolder>() {
      * 静态内部类
      */
     class LessonViewHolder : BaseViewHolder{
-        constructor(itemView: View) : super(itemView)
+       internal constructor(itemView: View) : super(itemView)
 
         companion object{
             fun onCreate(parent: ViewGroup): LessonViewHolder{
@@ -43,7 +43,7 @@ class LessonAdapter : RecyclerView.Adapter<LessonAdapter.LessonViewHolder>() {
             }
         }
 
-        fun onBind(lesson: Lesson){
+        internal fun onBind(lesson: Lesson){
             var date = lesson.date
             if (date == null){
                 date = "日期待定"
@@ -53,7 +53,7 @@ class LessonAdapter : RecyclerView.Adapter<LessonAdapter.LessonViewHolder>() {
 
             val state : Lesson.State = lesson.state
             if (state != null){
-                setText(R.id.tv_state, state.stateName)
+                setText(R.id.tv_state, state.stateName())
                 var colorRes = R.color.playback
                 when(state){
                     Lesson.State.PLAYBACK -> colorRes = R.color.playback
